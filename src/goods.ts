@@ -1,4 +1,5 @@
-import { goods as goodsFromServer, colors } from './api/data';
+import { colors } from './api/data';
+import { GoodFromServer, Goods } from './types';
 
 const getColorById = (id: number) => {
   const color = colors.find((currentColor) => currentColor.id === id);
@@ -8,7 +9,9 @@ const getColorById = (id: number) => {
     : 'black';
 };
 
-export const goods: Goods = goodsFromServer.map(good => ({
-  ...good,
-  color: getColorById(good.colorId),
-}));
+export const mapGoods = (goods: GoodFromServer[]): Goods => (
+  goods.map(good => ({
+    ...good,
+    color: getColorById(good.colorId),
+  }))
+);
