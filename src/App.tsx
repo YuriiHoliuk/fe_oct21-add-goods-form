@@ -1,19 +1,26 @@
 import React from 'react';
 import './App.css';
+import { Goods } from './types';
+import { GoodsList } from './GoodsList';
+import { goods as initialGoods } from './goods';
 
-import users from './api/users';
+interface State {
+  goods: Goods;
+}
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <h1>Add todo form</h1>
+export class App extends React.Component<{}, State> {
+  state = {
+    goods: initialGoods,
+  };
 
-      <p>
-        <span>Users: </span>
-        {users.length}
-      </p>
-    </div>
-  );
-};
+  render() {
+    const { goods } = this.state;
 
-export default App;
+    return (
+      <div className="App">
+        <h1>Add goods form</h1>
+        <GoodsList goods={goods} />
+      </div>
+    );
+  }
+}
