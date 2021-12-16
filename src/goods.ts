@@ -9,9 +9,13 @@ const getColorById = (id: number) => {
     : 'black';
 };
 
-export const mapGoods = (goods: GoodFromServer[]): Goods => (
-  goods.map(good => ({
-    ...good,
-    color: getColorById(good.colorId),
-  }))
-);
+export const mapGoods = (goods: GoodFromServer[]): Goods => {
+  console.log('Map');
+
+  return (
+    goods.map(good => ({
+      ...good,
+      color: getColorById(good.colorId),
+    }))
+  );
+};
